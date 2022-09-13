@@ -11,8 +11,8 @@ def read_root():
 
 
 @app.get("/countries/{country_name}")
-async def country(country_name: str):
-    return {"country_name": country_name}
+async def country(country_name: str, country_no: int, city_name: Optional[str] = None):
+    return {"country_name": country_name, "country_no": country_no}
 
 
 @app.get("/items/{item_id}")
