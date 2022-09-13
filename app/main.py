@@ -6,6 +6,11 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+class ShopInfo(BaseModel):
+    name: str
+    location: str
+
+
 class Item(BaseModel):
     name: str
     description: Optional[str] = None
@@ -13,9 +18,19 @@ class Item(BaseModel):
     tax: float
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+class Data(BaseModel):
+    shop_info: Optional[ShopInfo] = None
+    items: list[Item]
+
+
+# @app.get("/")
+# def read_root():
+#     return {"Hello": "World"}
+
+
+@app.post("/")
+async def index(data: Data):
+    return {"data": data}
 
 
 @app.get("/countries/{country_name}")
