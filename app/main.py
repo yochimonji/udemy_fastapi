@@ -28,7 +28,6 @@ async def country(country_name: str, country_no: int, city_name: Optional[str] =
 #     return {"item_id": item_id, "q": q}
 
 
-@app.post("/item/")
-async def create_item(item: Item):
-
+@app.post("/item")
+async def create_item(item: Item) -> dict[str, str]:
     return {"message": f"{item.name}は税込み価格{item.price * item.tax}円になります。"}
