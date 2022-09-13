@@ -1,7 +1,7 @@
 from typing import Optional
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
@@ -12,7 +12,7 @@ class ShopInfo(BaseModel):
 
 
 class Item(BaseModel):
-    name: str
+    name: str = Field(min_length=4, max_length=12)
     description: Optional[str] = None
     price: int
     tax: float
