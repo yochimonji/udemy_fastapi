@@ -1,28 +1,6 @@
-import datetime
-
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
 
-
-class Booking(BaseModel):
-    booking_id: int
-    user_id: int
-    room_id: int
-    booked_num: int
-    start_datetime: datetime.datetime
-    end_datetime: datetime.datetime
-
-
-class User(BaseModel):
-    user_id: int
-    user_name: str = Field(max_length=12)
-
-
-class Room(BaseModel):
-    room_id: int
-    room_name: str = Field(max_length=12)
-    capacity: int
-
+from .sql_app import schemas
 
 app = FastAPI()
 
@@ -33,15 +11,15 @@ async def index():
 
 
 @app.post("/users")
-async def users(users: User):
+async def users(users: schemas.User):
     return {"users": users}
 
 
 @app.post("/rooms")
-async def rooms(rooms: Room):
+async def rooms(rooms: schemas.Room):
     return {"rooms": rooms}
 
 
 @app.post("/bookings")
-async def bookings(bookings: Booking):
+async def bookings(bookings: schemas.Booking):
     return {"bookings": bookings}
