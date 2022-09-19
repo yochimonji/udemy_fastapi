@@ -1,3 +1,5 @@
+# poetry run uvicorn app.chapter7.sql_app.main:app --host 0.0.0.0 --port 9000 --reload
+
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 
